@@ -1,33 +1,25 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
 import MainNav from "../components/main-nav";
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+const UserData = () => {
+  const { error, data } = useSWR("/api/user", fetcher);
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+
+  return (
+    <ul>
+      {data.data.map((user) => (
+        <li key={user.username}>{user.username}</li>
+      ))}
+    </ul>
+  );
+};
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/user")
-      .then((res) => res.json())
-      .then(({ data }) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
-
-  let content;
-  if (loading) {
-    content = <p>Loading...</p>;
-  } else {
-    content = (
-      <ul>
-        {data.map((user) => (
-          <li key={user.username}>{user.username}</li>
-        ))}
-      </ul>
-    );
-  }
-
   return (
     <div>
       <Head>
@@ -36,7 +28,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainNav />
-      <main>{content}</main>
+      <main>
+        <UserData />
+      </main>
     </div>
   );
 }
