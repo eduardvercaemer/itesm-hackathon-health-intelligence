@@ -1,6 +1,7 @@
 import Head from "next/head";
 import MainNav from "../components/main-nav";
 import useSWR from "swr";
+import AppFeed from "../components/app-feed";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -29,7 +30,7 @@ export default function Home() {
       </Head>
       <MainNav />
       <main>
-        <UserData />
+        <AppFeed />
       </main>
     </div>
   );
