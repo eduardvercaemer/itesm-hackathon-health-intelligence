@@ -34,12 +34,19 @@ const DummyChart = () => (
   />
 );
 
-// center title text
-const DummyCard = ({ title, children, bigger }) => (
+// center title text, right aligned badge
+const DummyCard = ({ title, children, bigger, badge }) => (
   <Col sm={12} md={bigger ? 6 : 4} lg={bigger ? 6 : 3} className="mt-3">
     <Card className="h-100">
       <Card.Body>
-        <Card.Title className="text-center">{title}</Card.Title>
+        <Card.Title className="text-center">
+          {title}
+          {badge && (
+            <Badge variant="danger" className="float-right">
+              {badge}
+            </Badge>
+          )}
+        </Card.Title>
         {children}
       </Card.Body>
     </Card>
@@ -68,8 +75,12 @@ export default function MainDashboard() {
           <Summary />
         </DummyCard>
 
-        {["Pulse", "Pressure", "Sugar"].map((name) => (
-          <DummyCard key={name} title={name}>
+        {[
+          { name: "Pulse" },
+          { name: "Pressure", badge: "!!!" },
+          { name: "Sugar" },
+        ].map(({ name, badge }) => (
+          <DummyCard key={name} title={name} badge={badge}>
             <DummyChart />
           </DummyCard>
         ))}
