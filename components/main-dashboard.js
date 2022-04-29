@@ -1,5 +1,5 @@
 import { Chart, ArcElement } from "chart.js";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Badge, Container, Card, Row, Col, ListGroup } from "react-bootstrap";
 import { Doughnut } from "react-chartjs-2";
 Chart.register(ArcElement);
 
@@ -35,8 +35,8 @@ const DummyChart = () => (
 );
 
 // center title text
-const DummyCard = ({ title, children }) => (
-  <Col sm={12} md={4} lg={3} className="mt-3">
+const DummyCard = ({ title, children, bigger }) => (
+  <Col sm={12} md={bigger ? 6 : 4} lg={bigger ? 6 : 3} className="mt-3">
     <Card className="h-100">
       <Card.Body>
         <Card.Title className="text-center">{title}</Card.Title>
@@ -46,8 +46,17 @@ const DummyCard = ({ title, children }) => (
   </Col>
 );
 
+// the summary is a list group with items and pill badges right aligned
 const Summary = () => (
-  <p>summary</p>
+  <ListGroup variant="flush">
+    <ListGroup.Item>
+      You should eat less
+      <Badge pill variant="danger" className="float-right">
+        call your doctor
+      </Badge>
+    </ListGroup.Item>
+    <ListGroup.Item>You should eat more</ListGroup.Item>
+  </ListGroup>
 );
 
 export default function MainDashboard() {
@@ -55,7 +64,7 @@ export default function MainDashboard() {
   return (
     <Container>
       <Row>
-        <DummyCard title="Summary">
+        <DummyCard bigger title="Summary">
           <Summary />
         </DummyCard>
 
