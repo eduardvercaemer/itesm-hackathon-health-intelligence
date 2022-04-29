@@ -8,16 +8,16 @@ import Link from "next/link";
 
 export default function MainNav() {
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">Health Intelligence</Navbar.Brand>
+    <Navbar bg="light" expand="md">
+      <Navbar.Brand href="/">Health Intelligence</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Link href="/" passHref>
             <Nav.Link>Home</Nav.Link>
           </Link>
-          <Link href="#link" passHref>
-            <Nav.Link>Link</Nav.Link>
+          <Link href="/feed" passHref>
+            <Nav.Link>Feed</Nav.Link>
           </Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

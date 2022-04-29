@@ -1,7 +1,4 @@
-import Head from "next/head";
-import MainNav from "../components/main-nav";
 import useSWR from "swr";
-import AppFeed from "../components/app-feed";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -23,15 +20,7 @@ const UserData = () => {
 export default function Home() {
   return (
     <div>
-      <Head>
-        <title>Hackathon</title>
-        <meta name="description" content="Hackathon Web Prototype" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <MainNav />
-      <main>
-        <AppFeed />
-      </main>
+      <h1>Home</h1>
     </div>
   );
 }
