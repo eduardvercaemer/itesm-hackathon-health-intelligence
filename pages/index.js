@@ -1,4 +1,6 @@
+import { Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
+import MainDashboard from "../components/main-dashboard";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -19,8 +21,12 @@ const UserData = () => {
 
 export default function Home() {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Container>
+      <Row className="mt-3">
+        <Col>
+          <MainDashboard />
+        </Col>
+      </Row>
+    </Container>
   );
 }
