@@ -1,9 +1,19 @@
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Badge } from "react-bootstrap";
 
 // create simple post using bootstrap cards
-const Post = ({ header, title, content }) => (
+// the header contains a badge right aligned if badgeText is provided
+const Post = ({ header, title, content, badgeText }) => (
   <Card>
-    <Card.Header>{header}</Card.Header>
+    <Card.Header>
+      <Row>
+        <Col>{header}</Col>
+        {badgeText && (
+          <Col className="text-right">
+            <Badge variant="primary">{badgeText}</Badge>
+          </Col>
+        )}
+      </Row>
+    </Card.Header>
     <Card.Body>
       <Card.Title>{title}</Card.Title>
       <Card.Text>{content}</Card.Text>
@@ -18,6 +28,9 @@ export default function AppFeed() {
     title: `Title ${i + 1}`,
     content: `Content ${i + 1}`,
   }));
+
+  // add a badge to the first post
+  posts[0].badgeText = "People with diabetes should read";
 
   return (
     <Container>
