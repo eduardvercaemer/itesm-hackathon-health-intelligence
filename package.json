@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bootstrap": "4.6.0",
     "mysql2": "^2.3.3",
     "next": "12.1.5",
     "react": "18.1.0",
+    "react-bootstrap": "1.6.4",
     "react-dom": "18.1.0",
     "sequelize": "^6.19.0"
   },
