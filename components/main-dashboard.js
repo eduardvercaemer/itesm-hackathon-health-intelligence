@@ -47,6 +47,14 @@ export default function MainDashboard() {
     },
   ];
 
+  // a divider and header for notification section
+  const divider = (
+    <>
+      <hr />
+      <h3 className="text-center">Notifications</h3>
+    </>
+  );
+
   // each name gets its own card with a dummy chart
   return (
     <Container>
@@ -59,19 +67,21 @@ export default function MainDashboard() {
             </Card.Body>
           </Card>
         </Col>
-
-        <Accordion>
-          <Row>
-            {notifications.map((notification, index) => (
-              <Notification
-                index={`${index}`}
-                key={notification.title}
-                {...notification}
-              />
-            ))}
-          </Row>
-        </Accordion>
       </Row>
+
+      {divider}
+
+      <Accordion>
+        <Row>
+          {notifications.map((notification, index) => (
+            <Notification
+              index={`${index}`}
+              key={notification.title}
+              {...notification}
+            />
+          ))}
+        </Row>
+      </Accordion>
     </Container>
   );
 }
