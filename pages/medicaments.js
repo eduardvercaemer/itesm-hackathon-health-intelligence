@@ -43,7 +43,7 @@ const Pharmacies = ({ onClick }) => (
 const medicamentNames = ["Aspirin", "Paracetamol", "Ibuprofen"];
 
 // bootstrap list group with medicament names and button to buy
-const MyMedicaments = () => (
+const MyMedicaments = ({ onBuy }) => (
   <Container>
     <Row>
       <Col className="mx-auto text-center">
@@ -61,7 +61,12 @@ const MyMedicaments = () => (
                     <h5 className="m-0">{medicament}</h5>
                   </Col>
                   <Col xs={2}>
-                    <Button variant="outline-primary">Buy</Button>{" "}
+                    <Button
+                      onClick={() => onBuy({ medicament })}
+                      variant="outline-primary"
+                    >
+                      Buy
+                    </Button>{" "}
                   </Col>
                 </Row>
               </Container>
@@ -78,6 +83,14 @@ export default function Medicaments() {
   const openModal = () => setShowPharmacies(true);
   const closeModal = () => setShowPharmacies(false);
 
+  const [med, setMed] = useState("");
+  const [showMedBuy, setShowMedBuy] = useState(false);
+  const openMedBuy = ({ medicament }) => {
+    setMed(medicament);
+    setShowMedBuy(true);
+  };
+  const closeMedBuy = () => setShowMedBuy(false);
+
   return (
     <Container className="mt-3">
       <Row>
@@ -91,7 +104,7 @@ export default function Medicaments() {
           <Pharmacies onClick={openModal} />
         </Col>
         <Col xs={12} md={6} className="mt-3">
-          <MyMedicaments />
+          <MyMedicaments onBuy={openMedBuy} />
         </Col>
       </Row>
 
@@ -107,6 +120,23 @@ export default function Medicaments() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showMedBuy} onHide={closeMedBuy}>
+        <Modal.Header closeButton>
+          <Modal.Title>You are buying {med}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            Users can easily buy commonly used medicaments or be reminded when
+            they should buy them.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeMedBuy}>
             Close
           </Button>
         </Modal.Footer>
