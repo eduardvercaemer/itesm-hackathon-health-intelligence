@@ -1,13 +1,13 @@
 import { Button, ListGroup, Badge, Accordion, Alert } from "react-bootstrap";
 
 // item with text, optional badge, and checkbox
-const SuggestedAction = ({ text, badge, index, description }) => (
+const SuggestedAction = ({ text, badge, index, description, badgeVariant }) => (
   <ListGroup.Item>
     <input type="checkbox" /> {text}
     {badge && (
       <>
         {" "}
-        <Badge pill variant="primary">
+        <Badge pill variant={badgeVariant ?? "primary"}>
           {badge}
         </Badge>
       </>
@@ -23,7 +23,9 @@ const SuggestedAction = ({ text, badge, index, description }) => (
           Details
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={index}>
-          <Alert className="mt-3" variant="info">{description}</Alert>
+          <Alert className="mt-3" variant="info">
+            {description}
+          </Alert>
         </Accordion.Collapse>
       </>
     )}
@@ -35,27 +37,64 @@ const PastAction = ({ text }) => (
   <ListGroup.Item className="text-muted">{text}</ListGroup.Item>
 );
 
+const UserActions_ = ({ suggestions, history }) => (
+  <>
+    <Accordion>
+      <ListGroup variant="flush">
+        {suggestions.map((suggestion, index) => (
+          <SuggestedAction
+            key={index}
+            index={`${index}`}
+            text={suggestion.text}
+            badge={suggestion.badge}
+            badgeVariant={suggestion.badgeVariant}
+            description={suggestion.description}
+          />
+        ))}
+      </ListGroup>
+    </Accordion>
+    <ListGroup variant="flush">
+      {history.map((action, index) => (
+        <PastAction key={index} text={action.text} />
+      ))}
+    </ListGroup>
+  </>
+);
+
 // show a list of past actions and suggested actions, that can be checked
 // as completed to move to the history
 export default function UserActions() {
-  return (
-    <>
-      <Accordion>
-        <ListGroup variant="flush">
-          <SuggestedAction
-            text="Eat a healthy meal"
-            index="0"
-            description="This is likely to improve sugar levels in people with similar conditions"
-            badge="1"
-          />
-          <SuggestedAction text="Drink a glass of water" index="1" />
-          <SuggestedAction text="Take a walk" index="2" />
-          <SuggestedAction text="Exercise" badge="!!!" index="3" />
-        </ListGroup>
-      </Accordion>
-      <ListGroup variant="flush">
-        <PastAction text="Eat a healthy meal" />
-      </ListGroup>
-    </>
-  );
+  const suggestions = [
+    {
+      text: "High risk of heart attack",
+      badge: "call doctor immediately",
+      badgeVariant: "danger",
+      description:
+        "You should call your doctor immediately, we detected a high risk of heart attack due to your blood pressure.",
+    },
+    {
+      text: "Do 15 minutes of exercise today",
+      badge: "try this",
+      description:
+        "This is likely to improve blood pressure in people with similar conditions",
+    },
+    {
+      text: "Eat a healthy meal",
+      description:
+        "This is likely to improve sugar levels in people with similar conditions",
+    },
+  ];
+  const history = [
+    {
+      text: "You ate a healthy meal",
+    },
+    {
+      text: "You slept 7 hours in average the last week",
+    },
+    {
+      text: "You had a high blood pressure the last 2 days",
+    },
+  ];
+
+  return <UserActions_ suggestions={suggestions} history={history} />;
 }
