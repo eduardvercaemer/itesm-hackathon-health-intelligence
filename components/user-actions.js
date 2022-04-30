@@ -15,7 +15,6 @@ const SuggestedAction = ({ text, badge, index, description, badgeVariant }) => (
     {description && (
       <>
         <Accordion.Toggle
-          className="float-right"
           as={Button}
           variant="link"
           eventKey={index}
