@@ -41,8 +41,30 @@ export default function MainDashboard() {
     },
     {
       title: "High blood pressure",
-      content:
-        "Your high blood pressure can be related to your lower water intake.",
+      content: (
+        <>
+          <p>
+            Your high blood pressure can be related to your recent decrease in
+            water intake.
+          </p>
+          <hr />
+          <p>If this continues for the next 2 days, you should contact your doctor</p>
+          <Container>
+            <Row>
+              <Col>
+                <Button
+                  className="float-right"
+                  size="sm"
+                  variant="outline-light"
+                >
+                  Doctor
+                  <AiOutlineRight />
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      ),
       variant: "danger",
     },
   ];
