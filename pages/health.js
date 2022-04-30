@@ -6,6 +6,7 @@ import {
   Badge,
   Card,
   Alert,
+  Modal,
 } from "react-bootstrap";
 import { Chart, ArcElement } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
@@ -74,7 +75,12 @@ const DummyCard = ({ title, children, bigger, badge }) => (
   </Col>
 );
 
+// when clicking button with '+' open a modal with additional info
 export default function Health() {
+  const [show, setShow] = useState(false);
+  const openModal = () => setShow(true);
+  const closeModal = () => setShow(false);
+
   return (
     <Container className="mt-3">
       <Row>
@@ -94,11 +100,31 @@ export default function Health() {
         ))}
 
         <Col sm={12} md={4} lg={3} className="text-center my-auto mx-auto">
-          <Button variant="secondary" className="mt-3 mb-5">
+          <Button variant="secondary" className="mt-3 mb-5" onClick={openModal}>
             +
           </Button>
         </Col>
       </Row>
+
+      <Modal show={show} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>This is a demo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            Users are able to link other devices here to include in their
+            passive or active monitoring.
+
+            All data is stored for the user and used to build personalized
+            recommendations and alerts.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
