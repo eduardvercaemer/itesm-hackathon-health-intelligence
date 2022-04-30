@@ -24,6 +24,9 @@ export default function MainNav() {
           <Link href="/health" passHref>
             <Nav.Link>Monitor</Nav.Link>
           </Link>
+          <Link href="/doctor" passHref>
+            <Nav.Link>Doctor</Nav.Link>
+          </Link>
           <Link href="/profile" passHref>
             <Nav.Link>Profile</Nav.Link>
           </Link>
