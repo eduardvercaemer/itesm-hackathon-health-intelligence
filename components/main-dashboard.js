@@ -13,7 +13,7 @@ import { AiOutlineRight } from "react-icons/ai";
 import Link from "next/link";
 
 const Notification = ({ index, title, content, variant }) => (
-  <Col xs={12} md={6}>
+  <Col xs={12}>
     <Alert className="w-100 mt-3" variant={variant}>
       <Accordion.Toggle as={Alert.Heading} eventKey={index}>
         <>
@@ -32,7 +32,7 @@ const Notification = ({ index, title, content, variant }) => (
 );
 
 export default function MainDashboard() {
-  const notifications = [
+  const notificationsGood = [
     {
       title: "Stable blood sugar",
       content:
@@ -45,6 +45,8 @@ export default function MainDashboard() {
         "Your weigth has been adequate since you began doing X amount of exercise",
       variant: "success",
     },
+  ];
+  const notificationsBad = [
     {
       title: "High blood pressure",
       content: (
@@ -91,11 +93,11 @@ export default function MainDashboard() {
   // each name gets its own card with a dummy chart
   return (
     <Container>
+      <h3 className="text-center">Your Tasks</h3>
       <Row>
         <Col xs={12} md={8} className="mt-3 mx-auto">
           <Card className="h-100">
             <Card.Body>
-              <Card.Title className="text-center">Summary</Card.Title>
               <UserActions />
             </Card.Body>
           </Card>
@@ -104,17 +106,34 @@ export default function MainDashboard() {
 
       {divider}
 
-      <Accordion>
-        <Row>
-          {notifications.map((notification, index) => (
-            <Notification
-              index={`${index}`}
-              key={notification.title}
-              {...notification}
-            />
-          ))}
-        </Row>
-      </Accordion>
+      <Row>
+        <Col xs={12} md={6} className="mx-auto">
+          <Accordion>
+            <Row>
+              {notificationsBad.map((notification, index) => (
+                <Notification
+                  index={`${index}`}
+                  key={notification.title}
+                  {...notification}
+                />
+              ))}
+            </Row>
+          </Accordion>
+        </Col>
+        <Col xs={12} md={6} className="mx-auto">
+          <Accordion>
+            <Row>
+              {notificationsGood.map((notification, index) => (
+                <Notification
+                  index={`${index}`}
+                  key={notification.title}
+                  {...notification}
+                />
+              ))}
+            </Row>
+          </Accordion>
+        </Col>
+      </Row>
     </Container>
   );
 }
