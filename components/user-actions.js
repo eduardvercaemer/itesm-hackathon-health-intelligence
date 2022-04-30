@@ -32,9 +32,7 @@ const SuggestedAction = ({
         <Col xs={12} md={8}>
           <Row>
             <Col xs={1} className="my-auto align-items-center">
-              <WrapButton onClick={onDone} variant="outline-primary">
-                <FaCheckCircle style={{ display: "block" }} />
-              </WrapButton>
+              <input type="checkbox" onClick={onDone}/>
             </Col>
             <Col xs={1} className="my-auto align-items-center">
               <WrapButton onClick={onDone} variant="outline-black">

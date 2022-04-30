@@ -15,12 +15,24 @@ import Link from "next/link";
 const Notification = ({ index, title, content, variant }) => (
   <Col xs={12}>
     <Alert className="w-100 mt-3" variant={variant}>
-      <Accordion.Toggle as={Alert.Heading} eventKey={index}>
-        <>
-          {title}
-          <AiOutlineRight />
-        </>
-      </Accordion.Toggle>
+      <Alert.Heading>
+        <Container>
+          <Row>
+            <Col xs={12} md={8} className="my-auto">
+              <h5 className="my-auto">{title}</h5>
+            </Col>
+            <Col xs={12} md={4} className="text-right">
+              <Accordion.Toggle
+                as={Button}
+                variant={`outline-light`}
+                eventKey={index}
+              >
+                open
+              </Accordion.Toggle>
+            </Col>
+          </Row>
+        </Container>
+      </Alert.Heading>
       <Accordion.Collapse eventKey={index}>
         <>
           <hr />
@@ -106,9 +118,9 @@ export default function MainDashboard() {
 
       {divider}
 
-      <Row>
-        <Col xs={12} md={6} className="mx-auto">
-          <Accordion>
+      <Accordion>
+        <Row>
+          <Col xs={12} md={6} className="mx-auto">
             <Row>
               {notificationsBad.map((notification, index) => (
                 <Notification
@@ -118,22 +130,20 @@ export default function MainDashboard() {
                 />
               ))}
             </Row>
-          </Accordion>
-        </Col>
-        <Col xs={12} md={6} className="mx-auto">
-          <Accordion>
+          </Col>
+          <Col xs={12} md={6} className="mx-auto">
             <Row>
               {notificationsGood.map((notification, index) => (
                 <Notification
-                  index={`${index}`}
+                  index={`${index + notificationsBad.length}`}
                   key={notification.title}
                   {...notification}
                 />
               ))}
             </Row>
-          </Accordion>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </Accordion>
     </Container>
   );
 }
