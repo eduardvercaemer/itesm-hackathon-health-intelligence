@@ -17,7 +17,7 @@ const DummyChart = () => {
     labels: ["Red", "Blue"],
     datasets: [
       {
-        data: [300, 50],
+        data: [50, 50],
         backgroundColor: ["#FF6384", "#36A2EB"],
       },
     ],
@@ -29,9 +29,10 @@ const DummyChart = () => {
         labels: ["Red", "Blue"],
         datasets: [
           {
+            // modify old data by a small random amount
             data: [
-              Math.floor(Math.random() * 100),
-              Math.floor(Math.random() * 100),
+              Math.floor(data.datasets[0].data[0] + Math.random() * 10),
+              Math.floor(data.datasets[0].data[1] + Math.random() * 10),
             ],
             backgroundColor: ["#FF6384", "#36A2EB"],
           },
