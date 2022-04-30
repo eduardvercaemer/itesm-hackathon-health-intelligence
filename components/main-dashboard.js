@@ -95,10 +95,10 @@ export default function MainDashboard() {
   ];
 
   // a divider and header for notification section
-  const divider = (
+  const Divider = ({ title }) => (
     <>
       <hr />
-      <h3 className="text-center">Notifications</h3>
+      <h3 className="text-center">{title}</h3>
     </>
   );
 
@@ -116,7 +116,26 @@ export default function MainDashboard() {
         </Col>
       </Row>
 
-      {divider}
+      <Divider title="Resources" />
+
+      <Row>
+        <Col xs={12} md={6} className="mt-3 mx-auto">
+          <Link passHref href="/health">
+            <Button variant="outline-primary" className="w-100">
+              Health
+            </Button>
+          </Link>
+        </Col>
+        <Col xs={12} md={6} className="mt-3 mx-auto">
+          <Link passHref href="/medicaments">
+            <Button variant="outline-primary" className="w-100">
+              Medicaments
+            </Button>
+          </Link>
+        </Col>
+      </Row>
+
+      <Divider title="Notifications" />
 
       <Accordion>
         <Row>
