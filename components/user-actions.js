@@ -1,9 +1,17 @@
 import { Button, ListGroup, Badge, Accordion, Alert } from "react-bootstrap";
+import { useState } from "react";
 
 // item with text, optional badge, and checkbox
-const SuggestedAction = ({ text, badge, index, description, badgeVariant }) => (
+const SuggestedAction = ({
+  text,
+  badge,
+  index,
+  description,
+  badgeVariant,
+  onDone,
+}) => (
   <ListGroup.Item>
-    <input type="checkbox" /> {text}
+    <input type="checkbox" onClick={onDone} /> {text}
     {badge && (
       <>
         {" "}
@@ -14,11 +22,7 @@ const SuggestedAction = ({ text, badge, index, description, badgeVariant }) => (
     )}
     {description && (
       <>
-        <Accordion.Toggle
-          as={Button}
-          variant="link"
-          eventKey={index}
-        >
+        <Accordion.Toggle as={Button} variant="link" eventKey={index}>
           Details
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={index}>
@@ -36,18 +40,19 @@ const PastAction = ({ text }) => (
   <ListGroup.Item className="text-muted">{text}</ListGroup.Item>
 );
 
-const UserActions_ = ({ suggestions, history }) => (
+const UserActions_ = ({ suggestions, history, onDone }) => (
   <>
     <Accordion>
       <ListGroup variant="flush">
         {suggestions.map((suggestion, index) => (
           <SuggestedAction
-            key={index}
+            key={suggestion.text}
             index={`${index}`}
             text={suggestion.text}
             badge={suggestion.badge}
             badgeVariant={suggestion.badgeVariant}
             description={suggestion.description}
+            onDone={() => onDone(index)}
           />
         ))}
       </ListGroup>
@@ -63,7 +68,7 @@ const UserActions_ = ({ suggestions, history }) => (
 // show a list of past actions and suggested actions, that can be checked
 // as completed to move to the history
 export default function UserActions() {
-  const suggestions = [
+  const suggestions_ = [
     {
       text: "High risk of heart attack",
       badge: "call doctor immediately",
@@ -95,5 +100,19 @@ export default function UserActions() {
     },
   ];
 
-  return <UserActions_ suggestions={suggestions} history={history} />;
+  const [suggestions, setSuggestions] = useState(suggestions_);
+
+  const removeSuggestion = (index) => {
+    const newSuggestions = [...suggestions];
+    newSuggestions.splice(index, 1);
+    setSuggestions(newSuggestions);
+  };
+
+  return (
+    <UserActions_
+      onDone={(idx) => removeSuggestion(idx)}
+      suggestions={suggestions}
+      history={history}
+    />
+  );
 }
