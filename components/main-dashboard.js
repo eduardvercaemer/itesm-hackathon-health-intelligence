@@ -108,7 +108,7 @@ export default function MainDashboard() {
       <h3 className="text-center">Your Tasks</h3>
       <Row>
         <Col xs={12} md={8} className="mt-3 mx-auto">
-          <Card className="h-100">
+          <Card border="primary" className="h-100">
             <Card.Body>
               <UserActions />
             </Card.Body>
