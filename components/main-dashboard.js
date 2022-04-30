@@ -1,12 +1,36 @@
-import { Badge, Container, Card, Row, Col, Alert } from "react-bootstrap";
+import {
+  Badge,
+  Button,
+  Container,
+  Card,
+  Row,
+  Col,
+  Alert,
+  Accordion,
+} from "react-bootstrap";
 import UserActions from "./user-actions";
 
-const Notification = ({ title, content, variant }) => (
+// the content is initialy hidden and shown with a fade in animation using
+// an accordion
+const Notification = ({ index, title, content, variant }) => (
   <Col xs={12} md={6} className="my-auto">
-    <Alert className="h-100 mt-3" variant={variant}>
-      <Alert.Heading>{title}</Alert.Heading>
+    <Alert className="h-100 w-100 mt-3" variant={variant}>
+      <Alert.Heading>
+        {title}
+        {' '}
+        <Accordion.Toggle
+          as={Button}
+          variant="light"
+          eventKey={index}
+          icon="fa-solid fa-arrow-right"
+        >
+          +
+        </Accordion.Toggle>
+      </Alert.Heading>
       <hr />
-      <p>{content}</p>
+      <Accordion.Collapse eventKey={index}>
+        <p>{content}</p>
+      </Accordion.Collapse>
     </Alert>
   </Col>
 );
@@ -40,9 +64,17 @@ export default function MainDashboard() {
           </Card>
         </Col>
 
-        {notifications.map((notification) => (
-          <Notification key={notification.title} {...notification} />
-        ))}
+        <Accordion>
+          <Row>
+            {notifications.map((notification, index) => (
+              <Notification
+                index={`${index}`}
+                key={notification.title}
+                {...notification}
+              />
+            ))}
+          </Row>
+        </Accordion>
       </Row>
     </Container>
   );
