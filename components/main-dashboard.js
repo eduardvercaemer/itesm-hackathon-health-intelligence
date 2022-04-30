@@ -86,6 +86,8 @@ export default function MainDashboard() {
             <DummyChart />
           </DummyCard>
         ))}
+
+        <DummyCard />
       </Row>
     </Container>
   );

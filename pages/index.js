@@ -1,32 +1,35 @@
-import { Container, Row, Col } from "react-bootstrap";
-import useSWR from "swr";
-import MainDashboard from "../components/main-dashboard";
+import { Col, Container, Row, Form, Button } from "react-bootstrap";
+import Link from "next/link";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-const UserData = () => {
-  const { error, data } = useSWR("/api/user", fetcher);
-
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
-
-  return (
-    <ul>
-      {data.data.map((user) => (
-        <li key={user.username}>{user.username}</li>
-      ))}
-    </ul>
-  );
-};
-
-export default function Home() {
+// component centered in page with a form for username and password
+const LogIn = () => {
   return (
     <Container>
       <Row className="mt-3">
-        <Col>
-          <MainDashboard />
+        <Col md={6} className="mx-auto">
+          <h1 className="text-center">Log In</h1>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Remember me" />
+            </Form.Group>
+            <Link href="/home">
+              <Button variant="primary">Log In</Button>
+            </Link>
+          </Form>
         </Col>
       </Row>
     </Container>
   );
+};
+
+export default function Index() {
+  return <LogIn />;
 }

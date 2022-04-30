@@ -9,11 +9,13 @@ import Link from "next/link";
 export default function MainNav() {
   return (
     <Navbar bg="light" expand="md">
-      <Navbar.Brand href="/">Health Intelligence</Navbar.Brand>
+      <Link href="/" passHref>
+        <Navbar.Brand>Health Intelligence</Navbar.Brand>
+      </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Link href="/" passHref>
+          <Link href="/home" passHref>
             <Nav.Link>Home</Nav.Link>
           </Link>
           <Link href="/feed" passHref>
