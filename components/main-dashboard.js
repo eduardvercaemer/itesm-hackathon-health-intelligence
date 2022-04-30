@@ -9,8 +9,8 @@ import {
   Accordion,
 } from "react-bootstrap";
 import UserActions from "./user-actions";
-// import right arrow from react icons
 import { AiOutlineRight } from "react-icons/ai";
+import Link from "next/link";
 
 const Notification = ({ index, title, content, variant }) => (
   <Col xs={12} md={6} className="my-auto">
@@ -48,18 +48,23 @@ export default function MainDashboard() {
             water intake.
           </p>
           <hr />
-          <p>If this continues for the next 2 days, you should contact your doctor</p>
+          <p>
+            If this continues for the next 2 days, you should contact your
+            doctor
+          </p>
           <Container>
             <Row>
               <Col>
-                <Button
-                  className="float-right"
-                  size="sm"
-                  variant="outline-light"
-                >
-                  Doctor
-                  <AiOutlineRight />
-                </Button>
+                <Link href="/doctor">
+                  <Button
+                    className="float-right"
+                    size="sm"
+                    variant="outline-light"
+                  >
+                    Doctor
+                    <AiOutlineRight />
+                  </Button>
+                </Link>
               </Col>
             </Row>
           </Container>
