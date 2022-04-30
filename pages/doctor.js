@@ -8,7 +8,12 @@ import "react-calendar/dist/Calendar.css";
 // each item has a title and content inline
 const DoctorInfo = () => (
   <>
-    <Container>
+    <Container className="mt-3">
+      <Row>
+        <Col className="text-center mx-auto">
+          <h3>Doctor</h3>
+        </Col>
+      </Row>
       <Row>
         <Col xs={12} md={8} className="mx-auto">
           <ListGroup variant="flush">

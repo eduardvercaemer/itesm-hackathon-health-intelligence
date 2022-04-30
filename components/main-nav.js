@@ -18,14 +18,14 @@ export default function MainNav() {
           <Link href="/home" passHref>
             <Nav.Link>Home</Nav.Link>
           </Link>
-          <Link href="/feed" passHref>
-            <Nav.Link>Feed</Nav.Link>
-          </Link>
           <Link href="/health" passHref>
             <Nav.Link>Monitor</Nav.Link>
           </Link>
           <Link href="/doctor" passHref>
             <Nav.Link>Doctor</Nav.Link>
+          </Link>
+          <Link href="/medicaments" passHref>
+            <Nav.Link>Medicaments</Nav.Link>
           </Link>
           <Link href="/profile" passHref>
             <Nav.Link>Profile</Nav.Link>

@@ -9,6 +9,11 @@ export default function Profile() {
   return (
     <Container>
       <Row className="mt-3">
+        <Col className="mx-auto text-center">
+          <h3>Profile</h3>
+        </Col>
+      </Row>
+      <Row className="mt-3">
         <Col xs={12} md={8} lg={6} className="mx-auto">
           <Card>
             <Card.Body>

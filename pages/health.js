@@ -75,7 +75,12 @@ const DummyCard = ({ title, children, bigger, badge }) => (
 
 export default function Health() {
   return (
-    <Container>
+    <Container className="mt-3">
+      <Row>
+        <Col className="mx-auto text-center">
+          <h3>Monitor</h3>
+        </Col>
+      </Row>
       <Row>
         {[
           { name: "Pulse" },
@@ -88,7 +93,9 @@ export default function Health() {
         ))}
 
         <Col sm={12} md={4} lg={3} className="text-center my-auto mx-auto">
-          <Button variant="secondary" className="mt-3 mb-5">+</Button>
+          <Button variant="secondary" className="mt-3 mb-5">
+            +
+          </Button>
         </Col>
       </Row>
     </Container>
