@@ -8,6 +8,7 @@ const Pharmacies = () => (
       {[1, 2, 3, 4, 5, 6].map((i) => (
         <Col key={i} xs={6} md={4} lg={3} className="my-3">
           <Image
+            alt=""
             src={`https://picsum.photos/id/${i}/200/200`}
             roundedCircle
             className="img-fluid"
@@ -30,7 +31,7 @@ const MyMedicaments = () => (
       <Col className="align-self-center">
         <ListGroup variant="flush">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <ListGroup.Item>
+            <ListGroup.Item key={i}>
               <Row>
                 <Col xs={8}>
                   <h5>Medicament {i}</h5>
