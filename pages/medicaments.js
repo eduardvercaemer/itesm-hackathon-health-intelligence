@@ -87,10 +87,10 @@ export default function Medicaments() {
       </Row>
 
       <Row>
-        <Col xs={12} md={6}>
+        <Col xs={12} md={6} className="mt-3">
           <Pharmacies onClick={openModal} />
         </Col>
-        <Col xs={12} md={6}>
+        <Col xs={12} md={6} className="mt-3">
           <MyMedicaments />
         </Col>
       </Row>
