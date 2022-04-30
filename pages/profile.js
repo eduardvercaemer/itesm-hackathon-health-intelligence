@@ -9,7 +9,7 @@ export default function Profile() {
   return (
     <Container>
       <Row className="mt-3">
-        <Col>
+        <Col xs={12} md={8} lg={6} className="mx-auto">
           <Card>
             <Card.Body>
               <Row>
