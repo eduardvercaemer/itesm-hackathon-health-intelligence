@@ -35,7 +35,7 @@ export default function AppFeed() {
   return (
     <Container>
       <Row className="my-3">
-        <Col md={6} className="mx-auto">
+        <Col md={6} className="mx-auto text-center">
           <h1>Your Health Feed</h1>
         </Col>
       </Row>

@@ -22,7 +22,7 @@ export default function MainNav() {
             <Nav.Link>Feed</Nav.Link>
           </Link>
           <Link href="/health" passHref>
-            <Nav.Link>Health</Nav.Link>
+            <Nav.Link>Monitor</Nav.Link>
           </Link>
           <Link href="/profile" passHref>
             <Nav.Link>Profile</Nav.Link>
