@@ -1,7 +1,23 @@
-import { Button, ListGroup, Badge, Accordion, Alert } from "react-bootstrap";
+import {
+  Button,
+  ListGroup,
+  Container,
+  Badge,
+  Accordion,
+  Alert,
+  Row,
+  Col,
+} from "react-bootstrap";
 import { useState } from "react";
+import { FaCheckCircle, FaTimes } from "react-icons/fa";
 
-// item with text, optional badge, and checkbox
+// imvisible react bootstrap button
+const WrapButton = ({ children, onClick, variant }) => (
+  <Button variant={variant} onClick={onClick}>
+    {children}
+  </Button>
+);
+
 const SuggestedAction = ({
   text,
   badge,
@@ -11,27 +27,50 @@ const SuggestedAction = ({
   onDone,
 }) => (
   <ListGroup.Item>
-    <input type="checkbox" onClick={onDone} /> {text}
-    {badge && (
-      <>
-        {" "}
-        <Badge pill variant={badgeVariant ?? "primary"}>
-          {badge}
-        </Badge>
-      </>
-    )}
-    {description && (
-      <>
-        <Accordion.Toggle as={Button} variant="link" eventKey={index}>
-          Details
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey={index}>
-          <Alert className="mt-3" variant="info">
-            {description}
-          </Alert>
-        </Accordion.Collapse>
-      </>
-    )}
+    <Container>
+      <Row>
+        <Col xs={12} md={8}>
+          <Row>
+            <Col xs={1} className="my-auto align-items-center">
+              <WrapButton onClick={onDone} variant="outline-primary">
+                <FaCheckCircle style={{ display: "block" }} />
+              </WrapButton>
+            </Col>
+            <Col xs={1} className="my-auto align-items-center">
+              <WrapButton onClick={onDone} variant="outline-black">
+                <FaTimes style={{ display: "block" }} />
+              </WrapButton>
+            </Col>
+            <Col xs={8} className="ml-2 align-self-center">
+              {text}
+            </Col>
+          </Row>
+        </Col>
+        <Col xs={12} lg={4}>
+          <Accordion.Toggle as={Button} variant="link" eventKey={index}>
+            Details
+          </Accordion.Toggle>{" "}
+          {badge && (
+            <Badge
+              pill
+              variant={badgeVariant ?? "primary"}
+              style={{ display: "inline-block" }}
+            >
+              {badge}
+            </Badge>
+          )}
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Accordion.Collapse eventKey={index}>
+            <Alert className="mt-3" variant="info">
+              {description}
+            </Alert>
+          </Accordion.Collapse>
+        </Col>
+      </Row>
+    </Container>
   </ListGroup.Item>
 );
 
