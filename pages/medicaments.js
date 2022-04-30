@@ -1,17 +1,35 @@
-import { Container, Row, Col, Image, ListGroup, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Button,
+  Modal,
+} from "react-bootstrap";
+import { useState } from "react";
 
-// simple component with two rows of 6 thumbnail images from internet
-const Pharmacies = () => (
+const pharmacieLogos = [
+  "https://t3.ftcdn.net/jpg/01/32/53/30/500_F_132533023_rpFVvh1IWtZFggJNWJ8VR7mwGkRu6lko.jpg",
+  "https://image.freepik.com/free-vector/pharmacy-logo-design_1438-243.jpg",
+  "https://www.logopik.com/wp-content/uploads/edd/2019/01/Pharmacy-Vector-Logo-Template.png",
+  "http://cdn.onlinewebfonts.com/svg/img_427951.png",
+];
+
+const Pharmacies = ({ onClick }) => (
   <>
-    <h5 className="text-center">Pharmacies</h5>
+    <h4 className="text-center">Pharmacies</h4>
     <Row>
-      {[1, 2, 3, 4, 5, 6].map((i) => (
-        <Col key={i} xs={6} md={4} lg={3} className="my-3">
-          <Image
-            alt=""
-            src={`https://picsum.photos/id/${i}/200/200`}
+      {pharmacieLogos.map((logo) => (
+        <Col xs={8} sm={6} lg={4} className="text-center mx-auto mt-3">
+          <Button
+            as={Image}
+            src={logo}
+            width="100%"
+            height="100%"
             roundedCircle
-            className="img-fluid"
+            variant="outline-light"
+            onClick={onClick}
           />
         </Col>
       ))}
@@ -24,7 +42,7 @@ const MyMedicaments = () => (
   <Container>
     <Row>
       <Col className="mx-auto text-center">
-        <h3>My Medicaments</h3>
+        <h4>My Medicaments</h4>
       </Col>
     </Row>
     <Row>
@@ -49,6 +67,10 @@ const MyMedicaments = () => (
 );
 
 export default function Medicaments() {
+  const [showPharmacies, setShowPharmacies] = useState(false);
+  const openModal = () => setShowPharmacies(true);
+  const closeModal = () => setShowPharmacies(false);
+
   return (
     <Container className="mt-3">
       <Row>
@@ -59,12 +81,29 @@ export default function Medicaments() {
 
       <Row>
         <Col xs={12} md={6}>
-          <Pharmacies />
+          <Pharmacies onClick={openModal} />
         </Col>
         <Col xs={12} md={6}>
           <MyMedicaments />
         </Col>
       </Row>
+
+      <Modal show={showPharmacies} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>This is a demo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            Users are able to directly contact recommended pharmacies (or other
+            services) based on their profile and recent activity.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }
