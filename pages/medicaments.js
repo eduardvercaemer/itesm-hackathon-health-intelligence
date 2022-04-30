@@ -24,7 +24,7 @@ const Pharmacies = ({ onClick }) => (
     <h4 className="text-center">Pharmacies</h4>
     <Row>
       {pharmacieLogos.map((logo) => (
-        <Col xs={8} sm={6} lg={4} className="text-center mx-auto mt-3">
+        <Col xs={8} sm={6} lg={4} className="text-center mx-auto mt-3" key={logo}>
           <Button
             as={Image}
             src={logo}
@@ -54,7 +54,7 @@ const MyMedicaments = ({ onBuy }) => (
       <Col className="align-self-center">
         <ListGroup variant="flush">
           {medicamentNames.map((medicament) => (
-            <ListGroup.Item>
+            <ListGroup.Item key={medicament}>
               <Container>
                 <Row>
                   <Col xs={10} className="align-self-center">
