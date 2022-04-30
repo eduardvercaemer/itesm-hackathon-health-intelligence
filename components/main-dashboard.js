@@ -9,27 +9,23 @@ import {
   Accordion,
 } from "react-bootstrap";
 import UserActions from "./user-actions";
+// import right arrow from react icons
+import { AiOutlineRight } from "react-icons/ai";
 
-// the content is initialy hidden and shown with a fade in animation using
-// an accordion
 const Notification = ({ index, title, content, variant }) => (
   <Col xs={12} md={6} className="my-auto">
     <Alert className="h-100 w-100 mt-3" variant={variant}>
-      <Alert.Heading>
-        {title}
-        {' '}
-        <Accordion.Toggle
-          as={Button}
-          variant="light"
-          eventKey={index}
-          icon="fa-solid fa-arrow-right"
-        >
-          +
-        </Accordion.Toggle>
-      </Alert.Heading>
-      <hr />
+      <Accordion.Toggle as={Alert.Heading} eventKey={index}>
+        <>
+          {title}
+          <AiOutlineRight />
+        </>
+      </Accordion.Toggle>
       <Accordion.Collapse eventKey={index}>
-        <p>{content}</p>
+        <>
+          <hr />
+          <p>{content}</p>
+        </>
       </Accordion.Collapse>
     </Alert>
   </Col>
