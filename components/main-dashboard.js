@@ -18,10 +18,10 @@ const Notification = ({ index, title, content, variant }) => (
       <Alert.Heading>
         <Container>
           <Row>
-            <Col xs={12} md={8} className="my-auto">
+            <Col xs={8} md={8} className="my-auto align-items-center">
               <h5 className="my-auto">{title}</h5>
             </Col>
-            <Col xs={12} md={4} className="text-right">
+            <Col xs={4} md={4} className="text-right">
               <Accordion.Toggle
                 as={Button}
                 variant={`outline-light`}
