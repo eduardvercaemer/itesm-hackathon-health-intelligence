@@ -13,8 +13,8 @@ import { AiOutlineRight } from "react-icons/ai";
 import Link from "next/link";
 
 const Notification = ({ index, title, content, variant }) => (
-  <Col xs={12} md={6} className="my-auto">
-    <Alert className="h-100 w-100 mt-3" variant={variant}>
+  <Col xs={12} md={6}>
+    <Alert className="w-100 mt-3" variant={variant}>
       <Accordion.Toggle as={Alert.Heading} eventKey={index}>
         <>
           {title}
@@ -37,6 +37,12 @@ export default function MainDashboard() {
       title: "Stable blood sugar",
       content:
         "Since you began taking X medicament, your blood sugar has been more stable.",
+      variant: "success",
+    },
+    {
+      title: "Good weight",
+      content:
+        "Your weigth has been adequate since you began doing X amount of exercise",
       variant: "success",
     },
     {
@@ -86,7 +92,7 @@ export default function MainDashboard() {
   return (
     <Container>
       <Row>
-        <Col xs={12} md={6} className="mt-3">
+        <Col xs={12} md={8} className="mt-3 mx-auto">
           <Card className="h-100">
             <Card.Body>
               <Card.Title className="text-center">Summary</Card.Title>
