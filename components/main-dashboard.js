@@ -1,29 +1,47 @@
 import { Chart, ArcElement } from "chart.js";
 import { Badge, Container, Card, Row, Col, ListGroup } from "react-bootstrap";
 import { Doughnut } from "react-chartjs-2";
+import { useState, useEffect } from "react";
 Chart.register(ArcElement);
 
-// generate random data for a two part doughnut chart
+// generate random data for a two part doughnut chart every second
 const DummyChart = () => {
-  const data = {
-    labels: ["Less", "More"],
+  const [data, setData] = useState({
+    labels: ["Red", "Blue"],
     datasets: [
       {
-        data: [
-          Math.floor(Math.random() * 100),
-          Math.floor(Math.random() * 100),
-        ],
+        data: [300, 50],
         backgroundColor: ["#FF6384", "#36A2EB"],
-        hoverBackgroundColor: ["#FF6384", "#36A2EB"],
-      },
-    ],
-  };
+    },
+  ],
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newData = {
+        labels: ["Red", "Blue"],
+        datasets: [
+          {
+            data: [
+              Math.floor(Math.random() * 100),
+              Math.floor(Math.random() * 100),
+            ],
+            backgroundColor: ["#FF6384", "#36A2EB"],
+        },
+        ],
+      };
+      setData(newData);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Doughnut
       data={data}
       options={{
+        maintainAspectRatio: true,
         legend: {
-          position: "right",
+          display: false,
         },
       }}
     />
