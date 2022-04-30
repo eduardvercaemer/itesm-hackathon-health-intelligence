@@ -16,6 +16,9 @@ const pharmacieLogos = [
   "http://cdn.onlinewebfonts.com/svg/img_427951.png",
 ];
 
+const pillLogo =
+  "https://www.logolynx.com/images/logolynx/50/5045699be4ab08211a17c264a35b1c67.png";
+
 const Pharmacies = ({ onClick }) => (
   <>
     <h4 className="text-center">Pharmacies</h4>
@@ -37,6 +40,8 @@ const Pharmacies = ({ onClick }) => (
   </>
 );
 
+const medicamentNames = ["Aspirin", "Paracetamol", "Ibuprofen"];
+
 // bootstrap list group with medicament names and button to buy
 const MyMedicaments = () => (
   <Container>
@@ -48,16 +53,18 @@ const MyMedicaments = () => (
     <Row>
       <Col className="align-self-center">
         <ListGroup variant="flush">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <ListGroup.Item key={i}>
-              <Row>
-                <Col xs={8}>
-                  <h5>Medicament {i}</h5>
-                </Col>
-                <Col xs={4} className="text-right">
-                  <Button variant="primary">Buy</Button>
-                </Col>
-              </Row>
+          {medicamentNames.map((medicament) => (
+            <ListGroup.Item>
+              <Container>
+                <Row>
+                  <Col xs={10} className="align-self-center">
+                    <h5 className="m-0">{medicament}</h5>
+                  </Col>
+                  <Col xs={2}>
+                    <Button variant="outline-primary">Buy</Button>{" "}
+                  </Col>
+                </Row>
+              </Container>
             </ListGroup.Item>
           ))}
         </ListGroup>
