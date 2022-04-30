@@ -56,7 +56,7 @@ const DummyChart = () => {
 };
 
 const DummyCard = ({ title, children, bigger, badge }) => (
-  <Col sm={12} md={bigger ? 6 : 4} lg={bigger ? 6 : 3} className="mt-3">
+  <Col xs={8} md={bigger ? 6 : 4} lg={bigger ? 6 : 3} className="mt-3 mx-auto">
     <Card className="h-100">
       <Card.Body>
         <Card.Title className="text-center">

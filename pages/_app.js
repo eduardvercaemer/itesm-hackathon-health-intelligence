@@ -1,5 +1,5 @@
-import "../styles/globals.css";
 import "../styles/bootstrap.min.css";
+import "../styles/globals.css";
 import Head from "next/head";
 import MainNav from "../components/main-nav";
 
