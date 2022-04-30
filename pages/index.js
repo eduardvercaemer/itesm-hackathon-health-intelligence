@@ -20,9 +20,20 @@ const LogIn = () => {
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Remember me" />
             </Form.Group>
-            <Link href="/home">
-              <Button variant="primary">Log In</Button>
-            </Link>
+            <Form.Group>
+              <Row>
+                <Col xs={6} className="mx-auto text-center">
+                  <Link href="/home">
+                    <Button variant="primary">Log In</Button>
+                  </Link>
+                </Col>
+                <Col xs={6} className="mx-auto text-center">
+                  <Link href="#">
+                    <Button variant="warning">Sign Up</Button>
+                  </Link>
+                </Col>
+              </Row>
+            </Form.Group>
           </Form>
         </Col>
       </Row>
