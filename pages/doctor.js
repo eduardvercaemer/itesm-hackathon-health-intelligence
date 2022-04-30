@@ -1,7 +1,7 @@
-import { ListGroup, Button, Container, Col, Row } from "react-bootstrap";
+import { ListGroup, Button, Container, Col, Row, Image } from "react-bootstrap";
 import Calendar from "react-calendar";
-// import a cellphone icon
-import { FaPhone } from "react-icons/fa";
+// import a maps icon
+import { FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import "react-calendar/dist/Calendar.css";
 
 // a bootstrap list group with fields for doctor information
@@ -10,18 +10,26 @@ const DoctorInfo = () => (
   <>
     <Container className="mt-3">
       <Row>
-        <Col className="text-center mx-auto">
-          <h3>Doctor</h3>
-        </Col>
-      </Row>
-      <Row>
         <Col xs={12} md={8} className="mx-auto">
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h5>Dr. John Doe</h5>
+              <Container>
+                <Row>
+                  <Col xs={12} md={6} className="text-center">
+                    <Image src="https://picsum.photos/200/200" roundedCircle />
+                  </Col>
+                  <Col xs={12} md={6} className="align-self-center text-center">
+                    <h3 className="m-0">Dr. John Doe</h3>
+                  </Col>
+                </Row>
+              </Container>
             </ListGroup.Item>
             <ListGroup.Item>
-              <h5>Office: xxxxxxxxxxxx</h5>
+              <h5 style={{ display: "inline" }}>Office: </h5>
+              Calle Alta Tención Colonia Los Pinos
+              <Button variant="link" className="float-right">
+                <FaMapMarkerAlt />
+              </Button>
             </ListGroup.Item>
             <ListGroup.Item>
               <h5 style={{ display: "inline" }}>Cellphone: aa bbb bbb ccc</h5>
