@@ -23,12 +23,12 @@ const LogIn = () => {
             <Form.Group>
               <Row>
                 <Col xs={6} className="mx-auto text-center">
-                  <Link href="/home">
+                  <Link href="/home" passHref>
                     <Button variant="primary">Log In</Button>
                   </Link>
                 </Col>
                 <Col xs={6} className="mx-auto text-center">
-                  <Link href="#">
+                  <Link href="#" passHref>
                     <Button variant="warning">Sign Up</Button>
                   </Link>
                 </Col>

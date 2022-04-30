@@ -63,7 +63,7 @@ export default function MainDashboard() {
           <Container>
             <Row>
               <Col>
-                <Link href="/doctor">
+                <Link passHref href="/doctor">
                   <Button
                     className="float-right"
                     size="sm"

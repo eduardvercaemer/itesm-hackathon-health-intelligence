@@ -1,7 +1,7 @@
 import { Container, Image, Row, Col, Card } from "react-bootstrap";
 
 // dummy profile picture component from internet
-const ProfilePic = () => <Image src="https://picsum.photos/50" roundedCircle />;
+const ProfilePic = () => <Image alt="" src="https://picsum.photos/50" roundedCircle />;
 
 // profile card component, shows name, date of birth, list of chronic diseases
 // list of medications, and list of allergies
