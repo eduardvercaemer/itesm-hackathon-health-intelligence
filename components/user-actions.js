@@ -71,7 +71,7 @@ export default function UserActions() {
   const suggestions_ = [
     {
       text: "High risk of heart attack",
-      badge: "call doctor immediately",
+      badge: "!",
       badgeVariant: "danger",
       description: (
         <div>
@@ -84,7 +84,6 @@ export default function UserActions() {
     },
     {
       text: "Do 15 minutes of exercise today",
-      badge: "try this",
       description: (
         <div>
           <span className="font-weight-bold">
