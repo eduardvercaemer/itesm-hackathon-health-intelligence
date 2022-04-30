@@ -32,7 +32,7 @@ const SuggestedAction = ({
         <Col xs={12} md={8}>
           <Row>
             <Col xs={1} className="my-auto align-items-center">
-              <input type="checkbox" onClick={onDone}/>
+              <input type="checkbox" onClick={onDone} />
             </Col>
             <Col xs={1} className="my-auto align-items-center">
               <WrapButton onClick={onDone} variant="outline-black">
@@ -77,23 +77,37 @@ const PastAction = ({ text }) => (
   <ListGroup.Item className="text-muted">{text}</ListGroup.Item>
 );
 
+// when there are no suggestions, show a message instead
 const UserActions_ = ({ suggestions, history, onDone }) => (
   <>
     <Accordion>
-      <ListGroup variant="flush">
-        {suggestions.map((suggestion, index) => (
-          <SuggestedAction
-            key={suggestion.text}
-            index={`${index}`}
-            text={suggestion.text}
-            badge={suggestion.badge}
-            badgeVariant={suggestion.badgeVariant}
-            description={suggestion.description}
-            onDone={() => onDone(index)}
-          />
-        ))}
-      </ListGroup>
+      {suggestions.length > 0 ? (
+        <ListGroup variant="flush">
+          {suggestions.map((suggestion, index) => (
+            <SuggestedAction
+              key={suggestion.text}
+              index={`${index}`}
+              text={suggestion.text}
+              badge={suggestion.badge}
+              badgeVariant={suggestion.badgeVariant}
+              description={suggestion.description}
+              onDone={() => onDone(index)}
+            />
+          ))}
+        </ListGroup>
+      ) : (
+        <Alert variant="info" className="text-center align-self-center">
+          <h5>You are done for now!</h5>
+        </Alert>
+      )}
     </Accordion>
+    <Container>
+      <Row>
+        <Col className="mx-auto">
+          <h4>Recent Actions</h4>
+        </Col>
+      </Row>
+    </Container>
     <ListGroup variant="flush">
       {history.map((action, index) => (
         <PastAction key={index} text={action.text} />
@@ -143,7 +157,7 @@ export default function UserActions() {
       ),
     },
   ];
-  const history = [
+  const history_ = [
     {
       text: "You ate a healthy meal",
     },
@@ -156,11 +170,17 @@ export default function UserActions() {
   ];
 
   const [suggestions, setSuggestions] = useState(suggestions_);
+  const [history, setHistory] = useState(history_);
 
+  // removes suggestion from list and adds to history, keeping
+  // a maximum of 5 items in history
   const removeSuggestion = (index) => {
     const newSuggestions = [...suggestions];
+    const newHistory = [...history];
+    newHistory.push(newSuggestions[index]);
     newSuggestions.splice(index, 1);
     setSuggestions(newSuggestions);
+    setHistory(newHistory.slice(-5));
   };
 
   return (
