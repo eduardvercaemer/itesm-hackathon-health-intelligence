@@ -19,6 +19,9 @@ export default function MainNav() {
           <Link href="/feed" passHref>
             <Nav.Link>Feed</Nav.Link>
           </Link>
+          <Link href="/profile" passHref>
+            <Nav.Link>Profile</Nav.Link>
+          </Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
