@@ -1,7 +1,8 @@
 import { Chart, ArcElement } from "chart.js";
-import { Badge, Container, Card, Row, Col, ListGroup } from "react-bootstrap";
+import { Badge, Container, Card, Row, Col } from "react-bootstrap";
 import { Doughnut } from "react-chartjs-2";
 import { useState, useEffect } from "react";
+import UserActions from "./user-actions";
 Chart.register(ArcElement);
 
 // generate random data for a two part doughnut chart every second
@@ -12,8 +13,8 @@ const DummyChart = () => {
       {
         data: [300, 50],
         backgroundColor: ["#FF6384", "#36A2EB"],
-    },
-  ],
+      },
+    ],
   });
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const DummyChart = () => {
               Math.floor(Math.random() * 100),
             ],
             backgroundColor: ["#FF6384", "#36A2EB"],
-        },
+          },
         ],
       };
       setData(newData);
@@ -67,26 +68,13 @@ const DummyCard = ({ title, children, bigger, badge }) => (
   </Col>
 );
 
-// the summary is a list group with items and pill badges right aligned
-const Summary = () => (
-  <ListGroup variant="flush">
-    <ListGroup.Item>
-      You should eat less
-      <Badge pill variant="danger" className="float-right">
-        call your doctor
-      </Badge>
-    </ListGroup.Item>
-    <ListGroup.Item>You should eat more</ListGroup.Item>
-  </ListGroup>
-);
-
 export default function MainDashboard() {
   // each name gets its own card with a dummy chart
   return (
     <Container>
       <Row>
         <DummyCard bigger title="Summary">
-          <Summary />
+          <UserActions />
         </DummyCard>
 
         {[
