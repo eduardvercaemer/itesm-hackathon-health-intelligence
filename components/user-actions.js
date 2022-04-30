@@ -73,19 +73,38 @@ export default function UserActions() {
       text: "High risk of heart attack",
       badge: "call doctor immediately",
       badgeVariant: "danger",
-      description:
-        "You should call your doctor immediately, we detected a high risk of heart attack due to your blood pressure.",
+      description: (
+        <div>
+          <span className="font-weight-bold">
+            You should call your doctor immediately,
+          </span>{" "}
+          we detected that you have a high risk of heart attack.
+        </div>
+      ),
     },
     {
       text: "Do 15 minutes of exercise today",
       badge: "try this",
-      description:
-        "This is likely to improve blood pressure in people with similar conditions",
+      description: (
+        <div>
+          <span className="font-weight-bold">
+            78% of people with similar conditions
+          </span>{" "}
+          found improvements on their blood pressure with this activity.
+        </div>
+      ),
     },
     {
-      text: "Eat a healthy meal",
-      description:
-        "This is likely to improve sugar levels in people with similar conditions",
+      text: "Eat 2 fruits today",
+      description: (
+        <div>
+          <span className="font-weight-bold">
+            71% of people with similar conditions
+          </span>{" "}
+          found improvements on their blood pressure when doing this activity
+          regularly.
+        </div>
+      ),
     },
   ];
   const history = [
