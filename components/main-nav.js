@@ -10,7 +10,9 @@ export default function MainNav() {
   return (
     <Navbar bg="primary" variant="dark" expand="md">
       <Link href="/" passHref>
-        <Navbar.Brand>Health Intelligence</Navbar.Brand>
+        <Navbar.Brand>
+          <span className="font-weight-bold">MENTI</span>
+        </Navbar.Brand>
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
